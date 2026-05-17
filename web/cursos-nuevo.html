@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Curso - Cursos FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/cursos-nuevo.js" type="module" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+    <div class="contenedor-principal">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="inscripciones.html">Inscripciones</a></li>
+                <li><a href="estudiantes.html">Estudiantes</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Nuevo Curso</h2>
+
+            <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
+
+            <form id="formulario">
+                <div class="mb-3"
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaInicio" class="form-label">Fecha de Inicio:</label>
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cantidadHoras" class="form-label">Cantidad de Horas:</label>
+                    <input type="number" class="form-control" id="cantidadHoras" name="cantidadHoras" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cantidadInscriptos" class="form-label">Máxima Cantidad de Inscriptos:</label>
+                    <input type="number" class="form-control" id="cantidadInscriptos" name="cantidadInscriptos" required>
+                </div>
+
+                <button id="btnGuardar" type="submit" class="btn btn-primary">Crear Curso</button>
+            </form>
+
+        </main>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
