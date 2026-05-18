@@ -10,4 +10,9 @@ export default class CursosService {
         const cursosBD = await this.repository.getAll();
         return cursosBD.map (curso => new CursoResponseDTO(curso));
     }
+
+    async create(cursoData){
+        const nuevoCursoBD = await this.repository.create(cursoData);
+        return new CursoResponseDTO(nuevoCursoBD);
+    }
 }

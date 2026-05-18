@@ -1,6 +1,6 @@
 const cargarCursos = async () => {
     try {
-        const respuesta = await fetch("js/cursos.json");
+        const respuesta = await fetch("http://localhost:3000/api/cursos");
         const datos = await respuesta.json();
 
         const tabla = document.getElementById("tbody");
