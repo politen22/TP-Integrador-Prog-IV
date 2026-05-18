@@ -11,8 +11,28 @@ export default class CursosService {
         return cursosBD.map (curso => new CursoResponseDTO(curso));
     }
 
+    async getById(id){
+        const cursosBD = await this.repository.getById(id);
+
+        if (!cursosBD) {
+            return null;
+        }
+
+        return new CursoResponseDTO(cursosBD);
+    }
+
     async create(cursoData){
         const nuevoCursoBD = await this.repository.create(cursoData);
         return new CursoResponseDTO(nuevoCursoBD);
+    }
+
+    async update(id, cursoData){
+        const cursoActualizadoBD = await this.repository.update(id, cursoData);
+
+        if(!cursoActualizadoBD){
+            return null;
+        }
+
+        return new CursoResponseDTO(cursoActualizadoBD);
     }
 }
