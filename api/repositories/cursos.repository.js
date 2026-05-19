@@ -58,4 +58,17 @@ export default class CursosRepository {
         return rows[0]; // Devolvemos el curso modificado
     }
 
+    async delete(id){
+        const query = `
+        UPDATE cursos
+        SET id_curso_estado = 4, fecha_hora_modificacion = NOW()
+        WHERE id_curso = $1 AND id_curso_estado != 4
+        RETURNING *;
+        `;
+
+        const values = [id];
+        const { rows } = await pool.query(query, values);
+        return rows[0];
+    }
+
 }

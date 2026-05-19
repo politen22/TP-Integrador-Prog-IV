@@ -62,10 +62,29 @@ export default class CursosController{
             return res.status(404).json({error: `No se encontro ningun curso con el ID ${id} para modificar`});
         }
         res.json(cursoActualizado);
-    } catch(error) {
+        } catch(error) {
         console.error("Error al modificar el curso", error);
         res.status(500).json({error: "Error al intento de modificar el curso"});
+        }
     }
-}
+
+
+    async delete (req, res){
+        try{
+            const id = req.params.id;
+            const cursoEliminado = await this.service.delete(id);
+
+            if(!cursoEliminado){
+                return res.status(404).json({error: `No se encontro el curso con ID ${id} o ya fue eliminado.`});
+            }
+            
+            res.json({mensaje: 'Curso eliminado con exito', curso: cursoEliminado});
+        }   
+            catch (error) {
+                console.error('Error al eliminar:', error);
+                res.status(500).json({error:'Error al intentar elminar'});
+            }
+    }
+
 }
 

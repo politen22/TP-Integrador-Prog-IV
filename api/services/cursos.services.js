@@ -35,4 +35,10 @@ export default class CursosService {
 
         return new CursoResponseDTO(cursoActualizadoBD);
     }
+
+    async delete(id){
+        const cursoEliminado = await this.repository.delete(id);
+        if(!cursoEliminado) return null;
+        return new CursoResponseDTO(cursoEliminado);
+    }
 }
