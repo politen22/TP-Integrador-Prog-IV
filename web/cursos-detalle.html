@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Curso - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/cursos-detalle.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html" class="activo">Cursos</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-principal">
+        <main>
+            <h2>Detalle del Curso</h2>
+
+            <div id="error" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+            <div id="card-detalle" style="display: none;" class="mt-4">
+                
+                <div class="border border-dark p-4 mb-4">
+                    
+                    <div class="d-flex justify-content-between align-items-center border-bottom border-dark pb-3 mb-3">
+                        <h3 id="det-nombre"></h3>
+                        <span class="badge bg-dark border border-dark">ID: <span id="det-id"></span></span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="fw-bold">Descripcion</h5>
+                        <p id="det-descripcion"></p>
+                    </div>
+                    
+                    <div class="row text-center  border border-dark p-3 mx-0">
+                        <div class="col-md-4 border-end border-dark">
+                            <h6 class="fw-bold mb-1">Fecha de Inicio</h6>
+                            <p id="det-fecha" class="mb-0 fs-5 text-secondary"></p>
+                        </div>
+                        <div class="col-md-4 border-end border-dark">
+                            <h6 class="fw-bold mb-1">Duracion</h6>
+                            <p id="det-horas" class="mb-0 fs-5 text-secondary"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="fw-bold mb-1">Cupo Maximo</h6>
+                            <p id="det-inscriptos" class="mb-0 fs-5 text-secondary"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="botonera">
+                    <a href="cursos.html" class="btn btn-secondary">Volver al Listado</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+    <footer>
+
+    </footer>
+</body>
+
+</html>

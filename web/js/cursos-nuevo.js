@@ -1,10 +1,8 @@
 const iniciar = () => {
-    // 1. Agarramos el FORMULARIO entero, no el botón
     const formulario = document.getElementById("formulario"); 
     
-    // 2. Escuchamos el evento 'submit'
     formulario.addEventListener("submit", async (evt) => {
-        evt.preventDefault(); // 🛑 ¡Esto es lo que frena el maldito pestañeo!
+        evt.preventDefault();
         evt.stopPropagation();
 
         const obj = {
@@ -25,15 +23,15 @@ const iniciar = () => {
             });
 
             if (respuesta.ok) {
-                alert("¡Curso creado con éxito!");
-                window.location.href = "cursos.html"; 
+                alert("¡Curso creado con exito!");
+                window.location.href = "cursos-nuevo.html"; 
             } else {
                 const errorData = await respuesta.json();
                 document.getElementById("error").innerHTML = `<p>${errorData.error}</p>`;
                 document.getElementById("error").style.display = "block";
             }
         } catch (error) {
-            document.getElementById("error").innerHTML = "<p>Error de conexión con el servidor.</p>";
+            document.getElementById("error").innerHTML = "<p>Error de conexion con el servidor.</p>";
             document.getElementById("error").style.display = "block";
         }
     });

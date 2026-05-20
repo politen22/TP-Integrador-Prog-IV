@@ -18,15 +18,15 @@
             <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
         </div>
     </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html" class="activo">Cursos</a></li>
+        </ul>
+    </nav>
+
     <div class="contenedor-principal">
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="inscripciones.html">Inscripciones</a></li>
-                <li><a href="estudiantes.html">Estudiantes</a></li>
-                <li><a href="cursos.html">Cursos</a></li>
-            </ul>
-        </nav>
         <main>
             <h2>Nuevo Curso</h2>
 
@@ -55,7 +55,10 @@
                     <input type="number" class="form-control" id="cantidadInscriptos" name="cantidadInscriptos" required>
                 </div>
 
+                <div class="mt-4">
                 <button id="btnGuardar" type="submit" class="btn btn-primary">Crear Curso</button>
+                <a href="cursos.html" class="btn btn-secondary ms-2">Volver</a>
+                </div>
             </form>
 
         </main>
