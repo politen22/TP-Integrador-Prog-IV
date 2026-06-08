@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/estudiantes.js" type="module" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="estudiantes.html" class="activo">Estudiantes</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-principal">   
+        <main>
+            <h2>Listado de Estudiantes</h2>
+
+            <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
+
+            <table class="table table-striped border border-2 border-dark mt-3">
+                <thead>
+                    <tr class="align-middle, text-center">
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Acciones</th> 
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+
+            <div class="botonera mt-4">
+                <a href="estudiantes-nuevo.html" class="btn btn-secondary">Agregar Estudiante</a>
+            </div> 
+        </main>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
