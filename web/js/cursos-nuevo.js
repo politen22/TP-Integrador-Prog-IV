@@ -24,16 +24,30 @@ const iniciar = () => {
 
             if (respuesta.ok) {
                 alert("¡Curso creado con exito!");
-                window.location.href = "cursos-nuevo.html"; 
+                window.location.href = "cursos.html"; 
             } else {
                 const errorData = await respuesta.json();
-                document.getElementById("error").innerHTML = `<p>${errorData.error}</p>`;
+                let mensajeError = "";
+                
+                if (errorData.errores) {
+                    mensajeError = errorData.errores.map(e => e.msg).join('<br>');
+                } else if (errorData.error) {
+                    mensajeError = errorData.error;
+                } else {
+                    mensajeError = "Ocurrió un error desconocido.";
+                }
+
+                document.getElementById("error").innerHTML = `<p>${mensajeError}</p>`;
                 document.getElementById("error").style.display = "block";
             }
-        } catch (error) {
+
+            } catch (error) {
+            console.error(error);
             document.getElementById("error").innerHTML = "<p>Error de conexion con el servidor.</p>";
             document.getElementById("error").style.display = "block";
         }
+        
     });
 };
+
 document.addEventListener("DOMContentLoaded", iniciar);
