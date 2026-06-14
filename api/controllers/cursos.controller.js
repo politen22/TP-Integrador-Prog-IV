@@ -5,10 +5,12 @@ export default class CursosController{
         this.service = new CursosService();
     }
 
-
     async getAll(req, res){
         try {
-            const cursos = await this.service.getAll();
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const search = req.query.search || '';
+            const cursos = await this.service.getAll(page, limit, search);
             res.json(cursos);
         } catch (error){
             console.error('Error al obtener los cursos', error);
@@ -35,39 +37,29 @@ export default class CursosController{
     async create (req, res){
         try{
             const data = req.body;
-            if (!data.nombre || !data.descripcion || !data.fechaInicio || !data.cantidadHoras || !data.cantidadInscriptos){
-                return res.status(400).json({ error :'Todos los campos son obligatorios'});
-            }
-            const nuevoCurso = await this.service.create(data);
-
+            const nuevoCurso = await this.service.create(data);            
+            res.status(201).json(nuevoCurso); 
         } catch (error){
             console.error('Error al crear curso:', error);
             res.status(500).json({error: 'Error interno al crear el curso'});
         }
+    }
 
-        }
-
-    async update(req, res){
+   async update(req, res){
         try {
             const id = req.params.id;
             const data = req.body;
+            const cursoActualizado = await this.service.update(id, data);
 
-            if (!data.nombre || !data.descripcion || !data.fechaInicio || !data.cantidadHoras || !data.cantidadInscriptos) {
-                return res.status(400).json({error: 'Todos los campos son obligatorios para modificar el curso'});
-        }
-
-        const cursoActualizado = await this.service.update(id, data);
-
-        if(!cursoActualizado){
-            return res.status(404).json({error: `No se encontro ningun curso con el ID ${id} para modificar`});
-        }
-        res.json(cursoActualizado);
+            if(!cursoActualizado){
+                return res.status(404).json({error: `No se encontró ningun curso con el ID ${id} para modificar`});
+            }
+            res.json(cursoActualizado);
         } catch(error) {
-        console.error("Error al modificar el curso", error);
-        res.status(500).json({error: "Error al intento de modificar el curso"});
+            console.error("Error al modificar el curso", error);
+            res.status(500).json({error: "Error al intentar modificar el curso"});
         }
     }
-
 
     async delete (req, res){
         try{

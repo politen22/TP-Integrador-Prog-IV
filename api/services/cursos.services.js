@@ -6,9 +6,9 @@ export default class CursosService {
         this.repository = new CursosRepository();
     }
 
-    async getAll(){
-        const cursosBD = await this.repository.getAll();
-        return cursosBD.map (curso => new CursoResponseDTO(curso));
+    async getAll(page, limit, search){
+        const cursosBD = await this.repository.getAll(page, limit, search);
+        return cursosBD.map(curso => new CursoResponseDTO(curso));
     }
 
     async getById(id){
