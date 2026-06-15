@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Estudiante - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/estudiantes-nuevo.js" type="module" defer></script>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="estudiantes.html" class="activo">Estudiantes</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-principal">
+        <main>
+            <h2>Nuevo Estudiante</h2>
+
+            <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
+
+            <form id="formulario">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombres" class="form-label fw-bold">Nombres:</label>
+                        <input type="text" class="form-control border-dark" id="nombres" name="nombres" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido" class="form-label fw-bold">Apellido:</label>
+                        <input type="text" class="form-control border-dark" id="apellido" name="apellido" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="documento" class="form-label fw-bold">Documento (DNI):</label>
+                        <input type="text" class="form-control border-dark" id="documento" name="documento" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:</label>
+                        <input type="date" class="form-control border-dark" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-bold">Correo Electrónico:</label>
+                    <input type="email" class="form-control border-dark" id="email" name="email" required>
+                </div>
+
+                <div class="mt-4 botonera d-flex justify-content-between">
+                    <a href="estudiantes.html" class="btn btn-secondary">Cancelar</a>
+                    <button id="btnGuardar" type="submit" class="btn btn-primary fw-bold border-dark">Guardar Estudiante</button>
+                </div>
+                
+            </form>
+        </main>
+    </div>
+</body>
+</html>

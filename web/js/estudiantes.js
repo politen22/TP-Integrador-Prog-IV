@@ -8,20 +8,19 @@ const cargarEstudiantes = async () => {
 
         datos.forEach(estudiante => {
             const fila = document.createElement("tr");
-
             
             fila.innerHTML = `
-                <td class="align-middle">${estudiante.idEstudiante || estudiante.id_estudiante}</td>
+                <td class="align-middle">${estudiante.idEstudiante}</td>
                 <td class="align-middle">${estudiante.nombres}</td> 
                 <td class="align-middle">${estudiante.apellido}</td>
                 <td class="align-middle">${estudiante.documento}</td> 
                 <td class="align-middle">${estudiante.email}</td>
-                <td class="aling-middle text-center">${new Date(estudiante.fecha_nacimiento).toLocaleDateString('es-AR')}</td>
+                <td class="align-middle text-center">${new Date(estudiante.fechaNacimiento).toLocaleDateString('es-AR')}</td>
                 <td class="text-center align-middle">
                     <div class="d-flex justify-content-center gap-2">
-                        <a href="estudiantes-detalle.html?id=${estudiante.idEstudiante || estudiante.id_estudiante}" class="btn btn-info text-white" style="width: 90px;" title="Detalles">Detalles</a>
-                        <a href="estudiantes-editar.html?id=${estudiante.idEstudiante || estudiante.id_estudiante}" class="btn btn-warning" style="width: 90px;" title="Editar">Editar</a>
-                        <button onclick="eliminarEstudiante(${estudiante.idEstudiante || estudiante.id_estudiante})" class="btn btn-danger" style="width: 90px;" title="Eliminar">Eliminar</button>
+                        <a href="estudiantes-detalle.html?id=${estudiante.idEstudiante}" class="btn btn-info text-white" style="width: 90px;" title="Detalles">Detalles</a>
+                        <a href="estudiantes-editar.html?id=${estudiante.idEstudiante}" class="btn btn-warning" style="width: 90px;" title="Editar">Editar</a>
+                        <button onclick="eliminarEstudiante(${estudiante.idEstudiante})" class="btn btn-danger" style="width: 90px;" title="Eliminar">Eliminar</button>
                     </div>
                 </td>
             `;
