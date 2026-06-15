@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Inscripción - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/inscripciones-nuevo.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inscripciones.html" class="activo">Inscripciones</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-principal">
+        <main>
+            <h2>Registrar Nueva Inscripción</h2>
+
+            <div id="error" class="alert alert-danger mt-3" style="display: none" role="alert"></div>
+
+            <div class="border border-dark p-4 mt-4">
+                <form id="formulario-inscripcion">
+                    <div class="mb-4">
+                        <label for="id_curso" class="form-label fw-bold">Seleccionar Curso:</label>
+                        <select class="form-select border-dark" id="id_curso" required>
+                            <option value="">Cargando cursos disponibles...</option>
+                        </select>
+                        <div class="form-text text-muted">Recuerde que el curso debe encontrarse en estado "Inscripción Abierta".</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="id_estudiante" class="form-label fw-bold">Seleccionar Estudiante:</label>
+                        <select class="form-select border-dark" id="id_estudiante" required>
+                            <option value="">Cargando listado de estudiantes...</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="inscripciones.html" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary fw-bold border-dark">Confirmar Inscripción</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

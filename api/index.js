@@ -3,9 +3,10 @@ import cors from 'cors';
 import pool from './repositories/database.js';
 import cursosRoutes from './routes/cursos.routes.js';
 import estudiantesRoutes from './routes/estudiantes.routes.js';
+import inscripcionesRoutes from './routes/inscripciones.routes.js';
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 app.use (cors());
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use((req,res,next) => {
 
 app.use('/api', cursosRoutes);
 app.use('/api', estudiantesRoutes);
+app.use('/api', inscripcionesRoutes)
 
 app.use((err,req,res,next) => {
     console.error(err.stack);
@@ -24,5 +26,5 @@ app.use((err,req,res,next) => {
 });
 
 app.listen(port, () => {
-    console.log('Servidor API iniciado en http://localhost:${3000}');
+    console.log('Servidor API iniciado en http://localhost:${port}');
 });

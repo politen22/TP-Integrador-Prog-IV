@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripciones - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/inscripciones.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Cursos FCAD - UNER</h1>
+            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inscripciones.html" class="activo">Inscripciones</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-principal">
+        <main>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gestión de Inscripciones</h2>
+                <a href="inscripciones-nuevo.html" class="btn btn-primary fw-bold border-dark">+ Nueva Inscripción</a>
+            </div>
+
+            <div id="error" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-bordered border-dark align-middle">
+                    <thead class="table-dark text-center border-dark">
+                        <tr>
+                            <th style="width: 8%;">ID</th>
+                            <th>Curso</th>
+                            <th>Estudiante</th>
+                            <th style="width: 15%;">Documento</th>
+                            <th style="width: 18%;">Fecha Inscripción</th>
+                            <th style="width: 15%;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
