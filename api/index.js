@@ -4,6 +4,7 @@ import pool from './repositories/database.js';
 import cursosRoutes from './routes/cursos.routes.js';
 import estudiantesRoutes from './routes/estudiantes.routes.js';
 import inscripcionesRoutes from './routes/inscripciones.routes.js';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,7 +19,8 @@ app.use((req,res,next) => {
 
 app.use('/api', cursosRoutes);
 app.use('/api', estudiantesRoutes);
-app.use('/api', inscripcionesRoutes)
+app.use('/api', inscripcionesRoutes);
+app.use('/api', authRoutes);
 
 app.use((err,req,res,next) => {
     console.error(err.stack);

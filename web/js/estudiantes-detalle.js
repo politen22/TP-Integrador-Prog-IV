@@ -1,4 +1,9 @@
 const cargarDetalle = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
     const urlParams = new URLSearchParams(window.location.search);
     const idEstudiante = urlParams.get('id');
 
@@ -8,7 +13,17 @@ const cargarDetalle = async () => {
     }
 
     try {
-        const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`);
+        const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
 
         if (respuesta.ok) {
             const estudiante = await respuesta.json();

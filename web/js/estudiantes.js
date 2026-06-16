@@ -1,6 +1,24 @@
 const cargarEstudiantes = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
     try {
-        const respuesta = await fetch("http://localhost:3000/api/estudiantes");
+        const respuesta = await fetch("http://localhost:3000/api/estudiantes", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.status === 401){
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
+        
         const datos = await respuesta.json();
 
         const tabla = document.getElementById("tbody");
@@ -33,12 +51,22 @@ const cargarEstudiantes = async () => {
 }
 
 window.eliminarEstudiante = async (id) => {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     const confirmacion = confirm(`¿Seguro que deseas borrar el estudiante con el ID: ${id}?`);
     
     if (confirmacion) {
         try {
             const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
             });
 
             if (respuesta.ok) {

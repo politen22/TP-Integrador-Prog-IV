@@ -2,13 +2,29 @@ const urlParams = new URLSearchParams(window.location.search);
 const idEstudiante = urlParams.get('id');
 
 const cargarDatosActuales = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     if (!idEstudiante) {
         mostrarError("No se especificó ningún ID");
         return;
     }
 
     try {
-        const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`);
+        const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
 
         if (respuesta.ok) {
             const estudiante = await respuesta.json();
@@ -47,7 +63,8 @@ const manejarEnvio = async (evt) => {
         const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(objModificado)
         });

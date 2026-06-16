@@ -1,9 +1,25 @@
 const cargarSelectores = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     try {
         const [resCursos, resEstudiantes] = await Promise.all([
-            fetch("http://localhost:3000/api/cursos?limit=100"),
-            fetch("http://localhost:3000/api/estudiantes?limit=100")
+            fetch("http://localhost:3000/api/cursos?limit=100", {
+                headers: { "Authorization": `Bearer ${token}` }
+            }),
+            fetch("http://localhost:3000/api/estudiantes?limit=100", {
+                headers: { "Authorization": `Bearer ${token}` }
+            })
         ]);
+
+        if (resCursos.status === 401 || resEstudiantes.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
 
         const cursos = await resCursos.json();
         const estudiantes = await resEstudiantes.json();
@@ -52,7 +68,8 @@ const guardarInscripcion = async (evt) => {
         const respuesta = await fetch("http://localhost:3000/api/inscripciones", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(payload)
         });

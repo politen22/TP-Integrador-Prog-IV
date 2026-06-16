@@ -5,6 +5,12 @@ const iniciar = () => {
         evt.preventDefault();
         evt.stopPropagation();
 
+        const token = localStorage.getItem('token');
+        if(!token){
+            window.location.href = 'login.html';
+            return;
+        }
+
         const obj = {
             nombre: document.getElementById("nombre").value,
             descripcion: document.getElementById("descripcion").value,
@@ -17,7 +23,8 @@ const iniciar = () => {
             const respuesta = await fetch("http://localhost:3000/api/cursos", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(obj)
             });

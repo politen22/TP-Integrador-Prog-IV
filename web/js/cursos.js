@@ -1,9 +1,27 @@
 const cargarCursos = async () => {
-    try {
-        const respuesta = await fetch("http://localhost:3000/api/cursos");
-        const datos = await respuesta.json();
+    const token = localStorage.getItem('token');
+    if (!token){
+        window.location.href = 'login.html'
+        return;
+    }
 
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/cursos", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.status === 401){
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const datos = await respuesta.json();
         const tabla = document.getElementById("tbody");
+        tabla.innerHTML = "";
+
         datos.forEach(curso => {
             const fila = document.createElement("tr");
             
@@ -35,7 +53,10 @@ window.eliminarCurso = async (id) => {
     if (confirmacion) {
         try {
             const respuesta = await fetch(`http://localhost:3000/api/cursos/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                }
             });
 
             if (respuesta.ok) {

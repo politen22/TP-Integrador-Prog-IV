@@ -1,8 +1,25 @@
 const cargarInscripciones = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
     try {
-        const respuesta = await fetch("http://localhost:3000/api/inscripciones");
-        const datos = await respuesta.json();
+        const respuesta = await fetch("http://localhost:3000/api/inscripciones", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
+        if (respuesta.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
+
+
+        const datos = await respuesta.json();
         const tabla = document.getElementById("tbody");
         tabla.innerHTML = ""; 
 
@@ -36,13 +53,22 @@ const cargarInscripciones = async () => {
 };
 
 const cancelarInscripcion = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     if (!confirm(`¿Está seguro de que desea cancelar de forma definitiva la inscripción ID ${id}?`)) {
         return;
     }
 
     try {
         const respuesta = await fetch(`http://localhost:3000/api/inscripciones/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         });
 
         if (respuesta.ok) {

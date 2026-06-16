@@ -2,13 +2,28 @@ const urlParams = new URLSearchParams(window.location.search);
 const idCurso = urlParams.get('id');
 
 const cargarDatosActuales = async () => {
+    const token = localStorage.getItem('token');
+    if(!token){
+        window.location.href = 'login.html'
+        return;
+    }
     if (!idCurso) {
         mostrarError("No se especifico ningun ID");
         return;
     }
 
     try {
-        const respuesta = await fetch(`http://localhost:3000/api/cursos/${idCurso}`);
+        const respuesta = await fetch(`http://localhost:3000/api/cursos/${idCurso}`, {
+        headers:{
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if (respuesta.status === 401){
+        localStorage.removeItem('token');
+        window.location.href = 'login.html';
+        return;
+    }
 
         if (respuesta.ok) {
             const curso = await respuesta.json();
@@ -34,6 +49,12 @@ const manejarEnvio = async (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
 
+    const token = localStorage.getItem('token');
+    if(!token){
+        window.location.href = 'login.html';
+        return;
+    }
+
     const objModificado = {
         nombre: document.getElementById("nombre").value,
         descripcion: document.getElementById("descripcion").value,
@@ -46,7 +67,8 @@ const manejarEnvio = async (evt) => {
         const respuesta = await fetch(`http://localhost:3000/api/cursos/${idCurso}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(objModificado)
         });

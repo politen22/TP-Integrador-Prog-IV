@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - FCAD - UNER</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/login.js" defer></script>
+</head>
+<body class="d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
+    
+    <div class="card border-dark shadow" style="width: 100%; max-width: 400px;">
+        <div class="card-header bg-dark text-white text-center py-3">
+            <h2 class="h4 mb-0">Gestión FCAD</h2>
+        </div>
+
+        <div class="card-body p-4">
+            <div id="error-login" class="alert alert-danger text-center" style="display: none;" role="alert"></div>
+            
+            <form id="formulario-login">
+                <div class="mb-3">
+                    <label for="nombre_usuario" class="form-label fw-bold">Usuario</label>
+                    <input type="text" class="form-control border-dark" id="nombre_usuario" required placeholder="Ej: lauta22">
+                </div>
+
+                <div class="mb-4">
+                    <label for="contrasenia" class="form-label fw-bold">Contraseña</label>
+                    <input type="password" class="form-control border-dark" id="contrasenia" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 fw-bold border-dark">Ingresar al Sistema</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
