@@ -98,4 +98,21 @@ export default class InscripcionesRepository {
         const { rows } = await pool.query(query, [id]);
         return rows[0];
     }
+
+    async obtenerDetallePorId(id) {
+            const query = `
+                SELECT i.id_inscripcion as "idInscripcion", 
+                    i.fecha_hora_inscripcion as "fechaHoraInscripcion",
+                    c.nombre as "cursoNombre", 
+                    e.nombres as "estudianteNombres", 
+                    e.apellido as "estudianteApellido", 
+                    e.documento as "estudianteDocumento"
+                FROM inscripciones i
+                INNER JOIN cursos c ON i.id_curso = c.id_curso
+                INNER JOIN estudiantes e ON i.id_estudiante = e.id_estudiante
+                WHERE i.id_inscripcion = $1
+            `;
+            const { rows } = await pool.query(query, [id]);
+            return rows[0];
+        }
 }

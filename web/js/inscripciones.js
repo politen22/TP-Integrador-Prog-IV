@@ -18,7 +18,6 @@ const cargarInscripciones = async () => {
             return;
         }
 
-
         const datos = await respuesta.json();
         const tabla = document.getElementById("tbody");
         tabla.innerHTML = ""; 
@@ -39,7 +38,10 @@ const cargarInscripciones = async () => {
                 <td class="text-center">${ins.estudianteDocumento}</td>
                 <td class="text-center">${fechaFormateada}</td>
                 <td class="text-center">
-                    <button onclick="cancelarInscripcion(${ins.idInscripcion})" class="btn btn-danger btn-sm border-dark fw-bold" style="width: 110px;">Baja Inscripcion</button>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button onclick="descargarComprobante(${ins.idInscripcion})" class="btn btn-success btn-sm border-dark fw-bold" style="width: 120px;" title="Descargar PDF">Generar PDF</button>
+                        <button onclick="cancelarInscripcion(${ins.idInscripcion})" class="btn btn-danger btn-sm border-dark fw-bold" style="width: 120px;">Baja Inscripción</button>
+                    </div>
                 </td>
             `;
             tabla.appendChild(fila);
@@ -81,6 +83,40 @@ const cancelarInscripcion = async (id) => {
     } catch (error) {
         console.error(error);
         alert("Error de conexion al intentar procesar la baja.");
+    }
+};
+
+window.descargarComprobante = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/api/inscripciones/${id}/comprobante`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.ok) {
+            const blob = await respuesta.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `comprobante_${id}.pdf`; 
+            document.body.appendChild(a);
+            a.click(); 
+            
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } else {
+            alert("No se pudo generar el documento.");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Error de conexion al intentar descargar el PDF.");
     }
 };
 

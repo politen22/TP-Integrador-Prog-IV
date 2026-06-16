@@ -9,5 +9,6 @@ router.get('/inscripciones', verificarToken, inscripcionesController.getAll.bind
 router.get('/inscripciones/:id', verificarToken, inscripcionesController.getById.bind(inscripcionesController));
 router.post('/inscripciones', verificarToken, inscripcionesController.create.bind(inscripcionesController));
 router.delete('/inscripciones/:id', verificarToken, inscripcionesController.delete.bind(inscripcionesController));
+router.get('/inscripciones/:id/comprobante', verificarToken, inscripcionesController.generarComprobante.bind(inscripcionesController));
 
 export default router;
