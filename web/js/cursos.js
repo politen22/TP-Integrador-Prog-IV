@@ -25,6 +25,15 @@ const cargarCursos = async () => {
         datos.forEach(curso => {
             const fila = document.createElement("tr");
             
+            let badgeEstado = "";
+            if (curso.idCursoEstado === 1) {
+                badgeEstado = '<span class="badge bg-secondary border border-dark">Borrador</span>';
+            } else if (curso.idCursoEstado === 2) {
+                badgeEstado = '<span class="badge bg-success border border-dark">Abierto</span>';
+            } else if (curso.idCursoEstado === 3) {
+                badgeEstado = '<span class="badge bg-dark border border-light">Finalizado</span>';
+            }
+
             fila.innerHTML = `
                 <td class="align-middle">${curso.idCurso}</td>
                 <td class="align-middle">${curso.nombre}</td>
@@ -32,12 +41,15 @@ const cargarCursos = async () => {
                 <td class="align-middle text-center">${new Date(curso.fechaInicio).toLocaleDateString()}</td>
                 <td class="align-middle text-center">${curso.cantidadHoras}</td>
                 <td class="align-middle text-center">${curso.inscriptosMax}</td>
+                
+                <td class="align-middle text-center">${badgeEstado}</td> 
+                
                 <td class="align-middle text-center">
                     <a href="cursos-detalle.html?id=${curso.idCurso}" class="btn btn-info text-white" style="width:90px" title="Detalles">Detalles</a>
                     <a href="cursos-editar.html?id=${curso.idCurso}" class="btn btn-warning" style="width:90px" title="Editar">Editar</a>
                     <button onclick="eliminarCurso(${curso.idCurso})" class="btn btn-danger" style="width:90px" title="Eliminar">Eliminar</button>
                 </td>
-                `; 
+            `; 
             tabla.appendChild(fila);
         });
     } catch (error) {

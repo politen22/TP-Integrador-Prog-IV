@@ -30,7 +30,8 @@ const cargarDashboard = async () => {
 
         document.getElementById("dash-estudiantes").innerText = datos.totalEstudiantes;
         document.getElementById("dash-cursos").innerText = datos.totalCursos;
-
+        document.getElementById("dash-borradores").innerText = datos.totalBorradores || 0;
+        
         const listaCursos = document.getElementById("lista-cursos-activos");
         listaCursos.innerHTML = ""; 
 
