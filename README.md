@@ -25,8 +25,8 @@ JWT_SECRET=super_secreta_clave_fcad_uner_2026
 
 ### 2.Para la creacion de la base de datos haga
 ```
-psql -U postgres -c "CREATE DATABASE \"TP-Integrador\";"
-psql -U postgres -d "TP-Integrador" -f api/db/schema.sql
+psql -U postgres -c 'CREATE DATABASE \"TP-Integrador\";'
+psql -U postgres -d "TP-Integrador" -f api/schema/schema.sql
 ```
 
 ### 3. Para levantar el backend haga
