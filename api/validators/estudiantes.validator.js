@@ -3,7 +3,7 @@ import { body, validationResult } from 'express-validator';
 export const validarEstudiante = [
     body('documento')
         .notEmpty().withMessage('El documento es obligatorio')
-        .isLength({max: 20}).withMessage('El documento no puede superar los 9 caracteres'),
+        .isLength({max: 9}).withMessage('El documento no puede superar los 9 caracteres'),
     
     body('apellido')
         .notEmpty().withMessage('El apellido es obligatorio')

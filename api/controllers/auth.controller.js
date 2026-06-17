@@ -42,4 +42,32 @@ export default class AuthController {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     }
+
+    async registro(req, res){
+        try{
+            const {nombres, apellido, nombre_usuario, contrasenia} = req.body;
+
+            if (!nombres || !apellido || !nombre_usuario || !contrasenia){
+                return res.status(400).json({error: 'Todos los campos son obligatorios'});                
+            }
+
+            const usuarioExiste = await this.usuariosRepository.buscarPorNombreUsuario(nombre_usuario);
+            if (usuarioExiste) {
+                return res.status(400).json({error: 'El nombre de usuario ya esta en uso'});
+            }
+
+            const hash = crypto.createHash('sha256').update(contrasenia).digest('hex');
+            
+            const nuevoUsuario = await this.usuariosRepository.crearUsuario(nombres, apellido, nombre_usuario, hash);
+
+            res.status(201).json({
+                mensaje: 'Usuario creado con exito',
+                usuario: nuevoUsuario
+            });
+            
+        } catch (error) {
+            console.error('Error en el registro:', error);
+            res.status(500).json({error: 'Error interno en el servidor al crear el Usuario'});
+        }
+    }
 }

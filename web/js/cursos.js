@@ -26,19 +26,18 @@ const cargarCursos = async () => {
             const fila = document.createElement("tr");
             
             fila.innerHTML = `
-                <td>${curso.idCurso}</td>
-                <td>${curso.nombre}</td>
-                <td>${curso.descripcion}</td>
-                <td class="text-center">${new Date(curso.fechaInicio).toLocaleDateString()}</td>
-                <td class="text-center">${curso.cantidadHoras}</td>
-                <td class="text-center">${curso.inscriptosMax}</td>
-                <td class="text-center">
-                    <a href="cursos-detalle.html?id=${curso.idCurso}" class="btn btn-info" style="width:90px" title="Detalles">Detalles</a>
+                <td class="align-middle">${curso.idCurso}</td>
+                <td class="align-middle">${curso.nombre}</td>
+                <td class="align-middle">${curso.descripcion}</td>
+                <td class="align-middle text-center">${new Date(curso.fechaInicio).toLocaleDateString()}</td>
+                <td class="align-middle text-center">${curso.cantidadHoras}</td>
+                <td class="align-middle text-center">${curso.inscriptosMax}</td>
+                <td class="align-middle text-center">
+                    <a href="cursos-detalle.html?id=${curso.idCurso}" class="btn btn-info text-white" style="width:90px" title="Detalles">Detalles</a>
                     <a href="cursos-editar.html?id=${curso.idCurso}" class="btn btn-warning" style="width:90px" title="Editar">Editar</a>
                     <button onclick="eliminarCurso(${curso.idCurso})" class="btn btn-danger" style="width:90px" title="Eliminar">Eliminar</button>
                 </td>
-                <td>
-            `;
+                `; 
             tabla.appendChild(fila);
         });
     } catch (error) {
@@ -48,7 +47,13 @@ const cargarCursos = async () => {
 }
 
 window.eliminarCurso = async (id) => {
-    const confirmacion = confirm(`¿Estas seguro de queres eliminar el curso con ID ${id}?`);
+    const token = localStorage.getItem('token');
+    if (!token){
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const confirmacion = confirm(`¿Estas seguro de queres eliminar el curso con ID ${id}?`);    
     
     if (confirmacion) {
         try {
@@ -63,7 +68,8 @@ window.eliminarCurso = async (id) => {
                 alert("Curso eliminado con exito");
                 window.location.reload(); 
             } else {
-                alert("Hubo un error al intentar eliminar el curso.");
+                const errorData = await respuesta.json();
+                alert(errorData.error || "Hubo un error al intentar eliminar el curso.");
             }
         } catch (error) {
             console.error(error);

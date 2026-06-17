@@ -1,4 +1,11 @@
 const cargarDetalle = async () => {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const idCurso = urlParams.get('id');
 
@@ -8,7 +15,17 @@ const cargarDetalle = async () => {
     }
 
     try {
-        const respuesta = await fetch(`http://localhost:3000/api/cursos/${idCurso}`);
+        const respuesta = await fetch(`http://localhost:3000/api/cursos/${idCurso}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (respuesta.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+            return;
+        }
 
         if (respuesta.ok) {
             const curso = await respuesta.json();

@@ -51,6 +51,12 @@ const cargarSelectores = async () => {
 const guardarInscripcion = async (evt) => {
     evt.preventDefault();
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     const idCurso = document.getElementById("id_curso").value;
     const idEstudiante = document.getElementById("id_estudiante").value;
 

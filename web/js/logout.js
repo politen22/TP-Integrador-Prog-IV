@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const nombreUsuario = payloadDecodificado.nombreUsuario;
 
             cajaUsuario.innerHTML = `
-                <span class="fw-bold me-2 text-white">${nombreUsuario}</span>
-                <a href="#" onclick="cerrarSesion()" class="text-danger text-decoration-none fw-bold">(Cerrar Sesion)</a>
+                <div class="d-flex flex-column align-items-end me-4">
+                    <span class="fw-bold text-white lh-2 mb-1" style="font-size: 1.5em;">${nombreUsuario}</span>
+                    <a href="#" onclick="cerrarSesion()" class="text-danger text-decoration-none fw-bold" style="font-size: 0.85em;">Cerrar Sesion</a>
+                </div>
             `;
         } catch (error) {
             mostrarBotonAcceder(cajaUsuario);

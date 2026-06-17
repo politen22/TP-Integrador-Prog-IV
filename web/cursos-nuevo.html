@@ -4,18 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Curso - Cursos FCAD - UNER</title>
+    <title>Nuevo Curso - FCAD - UNER</title>
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/cursos-nuevo.js" type="module" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="contenedor">
-            <h1>Cursos FCAD - UNER</h1>
-            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        <div class="contenedor d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-3">
+                <h1>Cursos FCAD - UNER</h1>
+                <img src="img/logo.png" alt="Logo FCAD" style="height: 50px;">
+            </div>
+            
+            <div id="caja-usuario" class="text-end">
+                </div>
         </div>
     </header>
 
@@ -25,49 +31,53 @@
             <li><a href="inscripciones.html">Inscripciones</a></li>
             <li><a href="cursos.html" class="activo">Cursos</a></li>
             <li><a href="estudiantes.html">Estudiantes</a></li>
-
         </ul>
     </nav>
 
     <div class="contenedor-principal">
-        <main>
-            <h2>Nuevo Curso</h2>
+        <main class="container mt-4">
+            <h2>Registrar Nuevo Curso</h2>
 
-            <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
+            <div id="error" class="alert alert-danger mt-3" style="display: none" role="alert"></div>
 
-            <form id="formulario">
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción:</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="fechaInicio" class="form-label">Fecha de Inicio:</label>
-                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cantidadHoras" class="form-label">Cantidad de Horas:</label>
-                    <input type="number" class="form-control" id="cantidadHoras" name="cantidadHoras" required>
-                </div>
+            <div class="border border-dark p-4 mt-4 shadow-sm bg-white rounded">
+                <form id="formulario">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                        <input type="text" class="form-control border-dark" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+                        <textarea class="form-control border-dark" id="descripcion" name="descripcion" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio:</label>
+                        <input type="date" class="form-control border-dark" id="fechaInicio" name="fechaInicio" required>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="cantidadHoras" class="form-label fw-bold">Cantidad de Horas:</label>
+                            <input type="number" class="form-control border-dark" id="cantidadHoras" name="cantidadHoras" min="1" required>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label for="cantidadInscriptos" class="form-label fw-bold">Máxima Cantidad de Inscriptos:</label>
+                            <input type="number" class="form-control border-dark" id="cantidadInscriptos" name="cantidadInscriptos" min="1" required>
+                        </div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="cantidadInscriptos" class="form-label">Máxima Cantidad de Inscriptos:</label>
-                    <input type="number" class="form-control" id="cantidadInscriptos" name="cantidadInscriptos" required>
-                </div>
-
-                <div class="mt-4">
-                <button id="btnGuardar" type="submit" class="btn btn-primary">Crear Curso</button>
-                <a href="cursos.html" class="btn btn-secondary ms-2">Volver</a>
-                </div>
-            </form>
-
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="cursos.html" class="btn btn-secondary fw-bold border-dark">Cancelar</a>
+                        <button id="btnGuardar" type="submit" class="btn btn-primary fw-bold border-dark">Crear Curso</button>
+                    </div>
+                </form>
+            </div>
         </main>
     </div>
+    
     <footer>
-
     </footer>
 </body>
 

@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/cursos-editar.js" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="contenedor">
-            <h1>Cursos FCAD - UNER</h1>
-            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        <div class="contenedor d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-3">
+                <h1>Cursos FCAD - UNER</h1>
+                <img src="img/logo.png" alt="Logo FCAD" style="height: 50px;">
+            </div>
+            
+            <div id="caja-usuario" class="text-end">
+            </div>
         </div>
     </header>
 
@@ -25,23 +31,22 @@
             <li><a href="inscripciones.html">Inscripciones</a></li>
             <li><a href="cursos.html" class="activo">Cursos</a></li>
             <li><a href="estudiantes.html">Estudiantes</a></li>
-
         </ul>
     </nav>
 
     <div class="contenedor-principal">
-        <main>
+        <main class="container mt-4">
             <h2>Editar Curso Existente</h2>
 
-            <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
+            <div id="error" class="alert alert-danger mt-3" style="display: none" role="alert"></div>
 
-            <div class="border border-dark p-4 mt-4">
+            <div class="border border-dark p-4 mt-4 shadow-sm bg-white rounded">
                 
                 <form id="formulario-edicion" style="display: none;">
                     
                     <div class="mb-3">
                         <label class="form-label fw-bold">ID del Curso:</label>
-                        <input type="text" id="idCurso" class="form-control border-dark" style="background-color: white; font-weight: bold;">
+                        <input type="text" id="idCurso" class="form-control border-dark bg-light" readonly style="font-weight: bold; cursor: not-allowed;">
                     </div>
 
                     <div class="mb-3">
@@ -51,12 +56,12 @@
 
                     <div class="mb-3">
                         <label for="descripcion" class="form-label fw-bold">Descripción:</label>
-                        <textarea id="descripcion" class="form-control border-dark" rows="3" required></textarea>
+                        <textarea id="descripcion" class="form-control border-dark" rows="1" style="resize: none; overflow: hidden;" required></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio:</label>
-                        <input type="date" id="fechaInicio" class="form-control border-dark" required>
+                        <input type="date" id="fechaInicio" class="form-control border-dark bg-white" required>
                     </div>
 
                     <div class="row">
@@ -70,18 +75,22 @@
                         </div>
                     </div>
 
+                    <div class="mb-4">
+                        <label for="idCursoEstado" class="form-label fw-bold">Estado del Curso:</label>
+                        <select id="idCursoEstado" class="form-select border-dark" required>
+                            <option value="1">1 - Borrador</option>
+                            <option value="2">2 - Inscripción Abierta</option>
+                            <option value="3">3 - Finalizado</option>
+                        </select>
+                    </div>
+
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="cursos.html" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn fw-bold border-dark">Guardar Cambios</button>
+                        <a href="cursos.html" class="btn btn-secondary fw-bold border-dark">Cancelar</a>
+                        <button type="submit" class="btn btn-primary fw-bold border-dark">Guardar Cambios</button>
                     </div>
                 </form>
             </div>
         </main>
     </div>
-
-    <footer>
-
-    </footer>
 </body>
-
 </html>

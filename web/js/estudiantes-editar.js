@@ -51,6 +51,12 @@ const manejarEnvio = async (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
     const objModificado = {
         nombres: document.getElementById("nombres").value,
         apellido: document.getElementById("apellido").value,

@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/cursos-detalle.js" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="contenedor">
-            <h1>Cursos FCAD - UNER</h1>
-            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        <div class="contenedor d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-3">
+                <h1>Cursos FCAD - UNER</h1>
+                <img src="img/logo.png" alt="Logo FCAD" style="height: 50px;">
+            </div>
+            
+            <div id="caja-usuario" class="text-end">
+                </div>
         </div>
     </header>
 
@@ -25,49 +31,48 @@
             <li><a href="inscripciones.html">Inscripciones</a></li>
             <li><a href="cursos.html" class="activo">Cursos</a></li>
             <li><a href="estudiantes.html">Estudiantes</a></li>
-
         </ul>
     </nav>
 
     <div class="contenedor-principal">
-        <main>
+        <main class="container mt-4">
             <h2>Detalle del Curso</h2>
 
-            <div id="error" class="alert alert-danger" style="display: none;" role="alert"></div>
+            <div id="error" class="alert alert-danger mt-3" style="display: none;" role="alert"></div>
 
             <div id="card-detalle" style="display: none;" class="mt-4">
                 
-                <div class="border border-dark p-4 mb-4">
+                <div class="border border-dark p-4 mb-4 shadow-sm bg-white rounded">
                     
                     <div class="d-flex justify-content-between align-items-center border-bottom border-dark pb-3 mb-3">
-                        <h3 id="det-nombre"></h3>
-                        <span class="badge bg-dark border border-dark">ID: <span id="det-id"></span></span>
+                        <h3 id="det-nombre" class="fw-bold mb-0"></h3>
+                        <span class="badge bg-dark border border-dark fs-6">ID: <span id="det-id"></span></span>
                     </div>
                     
                     <div class="mb-4">
-                        <h5 class="fw-bold">Descripcion</h5>
-                        <p id="det-descripcion"></p>
+                        <h5 class="fw-bold">Descripción</h5>
+                        <p id="det-descripcion" class="fs-5"></p>
                     </div>
                     
-                    <div class="row text-center  border border-dark p-3 mx-0">
+                    <div class="row text-center border border-dark p-3 mx-0 bg-light">
                         <div class="col-md-4 border-end border-dark">
-                            <h6 class="fw-bold mb-1">Fecha de Inicio</h6>
+                            <h6 class="fw-bold mb-1 text-uppercase">Fecha de Inicio</h6>
                             <p id="det-fecha" class="mb-0 fs-5 text-secondary"></p>
                         </div>
                         <div class="col-md-4 border-end border-dark">
-                            <h6 class="fw-bold mb-1">Duracion</h6>
+                            <h6 class="fw-bold mb-1 text-uppercase">Duración</h6>
                             <p id="det-horas" class="mb-0 fs-5 text-secondary"></p>
                         </div>
                         <div class="col-md-4">
-                            <h6 class="fw-bold mb-1">Cupo Maximo</h6>
+                            <h6 class="fw-bold mb-1 text-uppercase">Cupo Máximo</h6>
                             <p id="det-inscriptos" class="mb-0 fs-5 text-secondary"></p>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="botonera">
-                    <a href="cursos.html" class="btn btn-secondary">Volver al Listado</a>
+                <div class="botonera text-end">
+                    <a href="cursos.html" class="btn btn-secondary fw-bold border-dark">Volver al Listado</a>
                 </div>
             </div>
 
@@ -75,7 +80,7 @@
     </div>
     
     <footer>
-
+        
     </footer>
 </body>
 

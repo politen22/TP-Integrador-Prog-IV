@@ -58,8 +58,8 @@ export default class CursosRepository {
     async update(id, curso) {
         const query = `
             UPDATE cursos
-            SET nombre = $1, descripcion = $2, fecha_inicio = $3, cantidad_horas = $4, inscriptos_max = $5, fecha_hora_modificacion = NOW()
-            WHERE id_curso = $6 
+            SET nombre = $1, descripcion = $2, fecha_inicio = $3, cantidad_horas = $4, inscriptos_max = $5, id_curso_estado = $6, fecha_hora_modificacion = NOW()
+            WHERE id_curso = $7 
             AND id_curso_estado IN (SELECT id_curso_estado FROM cursos_estados WHERE es_activo = 1)
             RETURNING *;
         `;
@@ -70,6 +70,7 @@ export default class CursosRepository {
             curso.fechaInicio,
             curso.cantidadHoras,
             curso.cantidadInscriptos,
+            curso.id_curso_estado,
             id
         ];
         

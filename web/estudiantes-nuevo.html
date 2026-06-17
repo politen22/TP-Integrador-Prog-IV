@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/estudiantes-nuevo.js" type="module" defer></script>
 </head>
 <body>
     <header>
-        <div class="contenedor">
-            <h1>Cursos FCAD - UNER</h1>
-            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        <div class="contenedor d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-3">
+                <h1>Cursos FCAD - UNER</h1>
+                <img src="img/logo.png" alt="Logo FCAD" style="height: 50px;">
+            </div>
+            
+            <div id="caja-usuario" class="text-end">
+                </div>
         </div>
     </header>
 
@@ -27,47 +33,49 @@
     </nav>
 
     <div class="contenedor-principal">
-        <main>
-            <h2>Nuevo Estudiante</h2>
+        <main class="container mt-4">
+            <h2>Registrar Nuevo Estudiante</h2>
 
             <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
 
-            <form id="formulario">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nombres" class="form-label fw-bold">Nombres:</label>
-                        <input type="text" class="form-control border-dark" id="nombres" name="nombres" required>
+            <div class="border border-dark p-4 mt-4 shadow-sm bg-white rounded">
+                <form id="formulario">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombres" class="form-label fw-bold">Nombres:</label>
+                            <input type="text" class="form-control border-dark" id="nombres" name="nombres" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="apellido" class="form-label fw-bold">Apellido:</label>
+                            <input type="text" class="form-control border-dark" id="apellido" name="apellido" required>
+                        </div>
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="apellido" class="form-label fw-bold">Apellido:</label>
-                        <input type="text" class="form-control border-dark" id="apellido" name="apellido" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="documento" class="form-label fw-bold">Documento (DNI):</label>
+                            <input type="text" class="form-control border-dark" id="documento" name="documento" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control border-dark" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="documento" class="form-label fw-bold">Documento (DNI):</label>
-                        <input type="text" class="form-control border-dark" id="documento" name="documento" required>
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Correo Electrónico:</label>
+                        <input type="email" class="form-control border-dark" id="email" name="email" required>
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento:</label>
-                        <input type="date" class="form-control border-dark" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    <div class="mt-4 d-flex justify-content-between">
+                        <a href="estudiantes.html" class="btn btn-secondary fw-bold border-dark">Cancelar</a>
+                        <button id="btnGuardar" type="submit" class="btn btn-primary fw-bold border-dark">Guardar Estudiante</button>
                     </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label fw-bold">Correo Electrónico:</label>
-                    <input type="email" class="form-control border-dark" id="email" name="email" required>
-                </div>
-
-                <div class="mt-4 botonera d-flex justify-content-between">
-                    <a href="estudiantes.html" class="btn btn-secondary">Cancelar</a>
-                    <button id="btnGuardar" type="submit" class="btn btn-primary fw-bold border-dark">Guardar Estudiante</button>
-                </div>
-                
-            </form>
+                    
+                </form>
+            </div>
         </main>
     </div>
 </body>

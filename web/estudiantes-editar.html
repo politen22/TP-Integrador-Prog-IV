@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/estudiantes-editar.js" defer></script>
 </head>
 <body>
     <header>
-        <div class="contenedor">
-            <h1>Cursos FCAD - UNER</h1>
-            <img src="img/logo.png" alt="Logo de la Facultad de Ciencias de la Administración">
+        <div class="contenedor d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-3">
+                <h1>Cursos FCAD - UNER</h1>
+                <img src="img/logo.png" alt="Logo FCAD" style="height: 50px;">
+            </div>
+            
+            <div id="caja-usuario" class="text-end">
+                </div>
         </div>
     </header>
 
@@ -27,18 +33,18 @@
     </nav>
 
     <div class="contenedor-principal">
-        <main>
+        <main class="container mt-4">
             <h2>Editar Estudiante</h2>
 
             <div id="error" class="alert alert-danger" style="display: none" role="alert"></div>
 
-            <div class="border border-dark p-4 mt-4">
+            <div class="border border-dark p-4 mt-4 shadow-sm bg-white rounded">
                 
                 <form id="formulario-edicion" style="display: none;" novalidate>
                     
                     <div class="mb-3">
                         <label class="form-label fw-bold">ID del Estudiante:</label>
-                        <input type="text" id="idEstudiante" class="form-control border-dark" disabled style="background-color: #e9ecef; font-weight: bold;">
+                        <input type="text" id="idEstudiante" class="form-control border-dark bg-light" readonly style="font-weight: bold; cursor: not-allowed;">
                     </div>
 
                     <div class="row">
@@ -71,7 +77,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="estudiantes.html" class="btn btn-secondary">Cancelar</a>
+                        <a href="estudiantes.html" class="btn btn-secondary fw-bold border-dark">Cancelar</a>
                         <button type="submit" class="btn btn-warning fw-bold border-dark">Guardar Cambios</button>
                     </div>
                 </form>

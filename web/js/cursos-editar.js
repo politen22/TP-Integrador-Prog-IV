@@ -37,6 +37,7 @@ const cargarDatosActuales = async () => {
             document.getElementById("cantidadHoras").value = curso.cantidadHoras;
             document.getElementById("cantidadInscriptos").value = curso.inscriptosMax;
             document.getElementById("formulario-edicion").style.display = "block";
+            document.getElementById("idCursoEstado").value = curso.idCursoEstado;
         } else {
             mostrarError("Error al cargar los datos del curso.");
         }
@@ -60,7 +61,8 @@ const manejarEnvio = async (evt) => {
         descripcion: document.getElementById("descripcion").value,
         fechaInicio: document.getElementById("fechaInicio").value,
         cantidadHoras: document.getElementById("cantidadHoras").value,
-        cantidadInscriptos: document.getElementById("cantidadInscriptos").value
+        cantidadInscriptos: document.getElementById("cantidadInscriptos").value,
+        id_curso_estado: parseInt(document.getElementById("idCursoEstado").value)
     };
 
     try {
